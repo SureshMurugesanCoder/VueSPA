@@ -8,11 +8,18 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
 
 // todo
 // cssVars()
 
 Vue.use(BootstrapVue)
+Vue.use(VueResource)
+
+//Filters
+Vue.filter('to-uppercase', function (value) {
+  return value.toUpperCase();
+});
 
 /* eslint-disable no-new */
 new Vue({
@@ -23,3 +30,5 @@ new Vue({
     App
   }
 })
+
+
