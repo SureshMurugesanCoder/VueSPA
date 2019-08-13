@@ -3,13 +3,13 @@
     <header class="app-header navbar">
       <h2 class="nav-item px-4">User Details</h2>
     </header>
-    <br />
     <div class="container-fluid">
       <div class="row">
+
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header">
-              <i class="cui-people h2"></i>List of Users
+              <i class="fa fa-align-justify"></i>List of Users
             </div>
             <div class="card-body">
               <table class="table table-responsive-sm">
@@ -30,7 +30,7 @@
                     <td>{{ blog.id }}</td>
                     <td>
                       <router-link v-bind:to="'/title/' + blog.id"
-                                   style="color:blue">{{ blog.name }}</router-link>
+                                   style="color:blue"> {{ blog.name }} </router-link>
                     </td>
                     <td> {{blog.phone}} </td>
                     <td> {{blog.address.street}},{{blog.address.suite}},{{blog.address.city}} </td>
@@ -65,12 +65,12 @@
     </div>
   </div>
 </template>
-
 <script>
   export default {
     name: "userList",
     data() {
       return {
+        msg: "List of Users",
         blogs: [],
         currentPage: 1,
         itemsPerPage: 5,

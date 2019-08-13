@@ -1,10 +1,28 @@
 <template>
-  <div id="hello">
-    <h1> Title: <span style="font-size:25px; color:cadetblue">{{blog.title | to-uppercase}} </span></h1>
-    <p> </p>
-    <h2> User ID: {{blog.userId}} </h2> <h2>Title ID: {{blog.id}}</h2>
-    <p> </p>
-    <article class="blog"> {{blog.body}}</article>
+  <div>
+    <header class="app-header navbar">
+      <h2 class="nav-item px-4">Blog Post Details</h2>
+    </header>
+    <br />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <i class="cui-envelope-open h4"></i>Title : {{blog.title}}
+            </div>
+            <div class="card-body">
+              User ID : {{blog.userId}} <br />
+              Title ID : {{blog.id}} <br />
+            </div>
+            <div class="card-footer">
+              Content : <br />
+              {{blog.body}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,29 +35,12 @@
       }
     },
     created() {
-      this.$http.get('https://jsonplaceholder.typicode.com/posts/' + this.id).then(function (data) {
+      this.$http.get('https://jsonplaceholder.typicode.com/posts/' + this.id).
+        then(function (data) {
         console.log(data);
         this.blog = data.body;
       })
     }
   }
-
 </script>
 
-
-<style>
-  #hello {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .blog {
-    padding: 20px;
-    margin: 20px 0;
-    box-sizing: border-box;
-    background: #eee;
-    font-size:25px;
-    font-style:italic;                                                                                                                                
-  }
-
-</style>

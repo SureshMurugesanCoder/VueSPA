@@ -1,16 +1,31 @@
 <template>
-  <div id="hello">
-    <header>
-      <h1>Titles for User ID: {{id}}</h1>
+  <div>
+    <header class="app-header navbar">
+      <h2 class="nav-item px-4">Titles</h2>
     </header>
-    <div v-for="blog in blogs" id="myblog">
-      <router-link v-bind:to="'/blog/' + blog.id">
-        <ul style="background-color:lightgray; color:blueviolet">
-          <li>{{ blog.title }}</li>
-        </ul>
-      </router-link>
+    <br />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <i class="cui-envelope-closed h4"></i>
+              Titles for User ID : {{name}}
+            </div>
+            <div class="card-body">
+              <div v-for="blog in blogs" id="myblog" v-bind:key="blog.id">
+                <router-link v-bind:to="'/blog/' + blog.id">
+                  <ul class="group">
+                    <li class="group-item list-group-item-action">{{ blog.title }}</li>
+                  </ul>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   </div>
+  </div>
 </template>
 
 <script>
@@ -18,48 +33,23 @@
     data() {
       return {
         id: this.$route.params.id,
+        name: "",
         blogs: [],
-        filterdata:[]
-      }
+        filterdata: []
+      };
     },
-    computed: {
-      getID: function() {
-        return this.id
-      }
-    },
+
     created() {
-      this.$http.get('https://jsonplaceholder.typicode.com/posts/').then(function (data) {
-        console.log(this.id);
-
-        var end = this.id * 10;
-        var start = end - 10;
-        console.log(start);
-        console.log(end);
-
-        
-      this.blogs = data.body.slice(start, end);
-        //this.filterdata = data.filter(function (d) {
-        //  return d.userId == this.id;
-        //});
-
-        //  this.blogs = filterdata.body.slice(1, 10);
-        
-      })
+      this.$http
+        .get("https://jsonplaceholder.typicode.com/posts/")
+        .then(function (data) {
+          var id = this.id;
+          this.filterdata = data.body.filter(function (d) {
+            return d.userId == id;
+          });
+          this.blogs = this.filterdata.slice(0, 10);
+          this.name = this.blogs[0].userId;
+        });
     }
-  }
-
+  };
 </script>
-
-<style>
-  #hello {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  #myblog {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 20px;
-  }
-
-</style>
