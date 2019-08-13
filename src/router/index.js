@@ -5,7 +5,7 @@ import Router from 'vue-router'
 const DefaultContainer = () => import('@/containers/DefaultContainer')
 
 // Component
-const HelloWorld = () => import('@/components/HelloWorld')
+const userList = () => import('@/components/userList')
 const singleBlog = () => import('@/components/singleBlog')
 const userTitle = () => import('@/components/userTitle')
 
@@ -74,8 +74,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'userList',
+      component: userList
     },
     {
       path: '/blog/:id',

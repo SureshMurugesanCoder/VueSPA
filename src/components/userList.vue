@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: 'userList',
     data() {
       return {
         msg: 'List of Users',
