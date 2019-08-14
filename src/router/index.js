@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// Containers
-const DefaultContainer = () => import('@/containers/DefaultContainer')
-
 // Component
 const userList = () => import('@/components/userList')
 const singleBlog = () => import('@/components/singleBlog')
@@ -22,11 +19,11 @@ export default new Router({
       component: userList
     },
     {
-      path: '/blog/:id',
+      path: '/user/blog/:id',
       component: singleBlog
     },
     {
-      path: '/title/:id',
+      path: '/user/:id',
       component: userTitle
     }
   ]
