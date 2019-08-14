@@ -19,10 +19,6 @@ export default new Router({
       component: userList
     },
     {
-      path: '/user/blog/:id',
-      component: singleBlog
-    },
-    {
       path: '/user/:id',
       component: userTitle
     }

@@ -19,12 +19,18 @@
                 Recent Post Titles for User ID : {{name}}
               </div>
               <div class="card-body">
-                <div v-for="blog in blogs" id="myblog" v-bind:key="blog.id">
-                  <router-link v-bind:to="'/user/blog/' + blog.id">
-                    <ul class="group">
-                      <li class="group-item list-group-item-action">{{ blog.title }} </li>
-                    </ul>
-                  </router-link>
+                <div v-for="(blog, index) in blogs">
+                  <b-button v-b-toggle.collapse-2 class="m-1"
+                            v-bind:class="{ active : value == index }"
+                            v-on:click="search(index)">
+                    {{blog.title}}
+                  </b-button>
+                  <b-collapse v-if="index == value" id="collapse-2">
+                    <b-card>
+                      <span style="text-decoration:underline; font-weight:bold">Title ID</span>: {{blog.id}} <br />
+                      <span style="text-decoration:underline; font-weight:bold">Content</span>: {{blog.body}}
+                    </b-card>
+                  </b-collapse>
                 </div>
               </div>
             </div>
@@ -40,9 +46,16 @@
       return {
         id: this.$route.params.id,
         name: "",
+        clicked: "",
+        value: 0,
         blogs: [],
         filterdata: []
       };
+    },
+    methods: {
+      search: function (e) {
+        this.value = e;
+      },
     },
     created() {
       this.$http
